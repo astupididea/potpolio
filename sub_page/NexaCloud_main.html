@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link rel="stylesheet" href="../reset.css">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="../index_sub/web.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.css"/>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@12/swiper-bundle.min.js"></script>
+    <title>넥사 클라우드</title>
+    <style>
+        :root {
+            --color-black:  #000;
+            --color-white:  #fff;
+            --color-gray:   #999;
+            --color-bgc:  #eeeeee; /* Razer 브랜드 그린 */
+            --color-card:   #222;
+        }
+
+        body {
+            margin: 0;
+        }
+
+        #section .container{
+            width: 100%;
+            margin: 0 auto;
+            /* padding: 0 clamp(16px, 5vw, 60px); */
+            box-sizing: border-box;
+            height: auto;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+        }
+
+        /* 메인 이미지 */
+        .object-cover{
+            width: 100%;
+            background-color: #6a868d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;        /* img가 cover 밖으로 나가면 숨김 */
+            border-radius: 50px;
+            margin-top: 100px;
+        }
+
+        .object-img{
+            width: 100%;
+            height: auto;
+            /* aspect-ratio: 15 / 10;  원하는 가로:세로 비율 지정 */
+            /* object-fit: cover;     이미지 잘리지 않게 꽉 채움 */
+            border-radius: 5%;
+        }
+
+        /* 메인 텍스트 */
+        .object-detail{
+            display: flex;
+            justify-content: space-between;
+            align-items: end;
+            width: 100%;
+            height: auto;
+            padding: clamp(40px, 8vh, 80px) 0 clamp(10px, 2vh, 30px) 0;
+        }
+        
+        #section .object-detail h1{
+            font-size: clamp(18px, 2.4vw, 60px);
+        }
+
+        #section .project-info{
+            display: flex;
+            
+        }
+
+        #section .project-info p{
+            font-size: clamp(12px, 1.4vw, 20px);
+        }
+
+        #section .project-info p:nth-child(2){
+            padding: 0 0 0 clamp(8px, 2vw, 30px);
+        }
+
+        .object-line{
+            display: inline-block;
+            height: 1px;
+            width: 100%;
+            border-bottom: 2px solid #000;
+            margin-bottom: 60px;
+        }
+
+        /* 뒤로가기 버튼 */
+        .back-btn {
+            position: absolute;
+            top: 100px;
+            left: 30px;
+            font-size: 18px;
+            color: var(--color-black);
+            background-color: var(--color-bgc);
+            border-radius: 50px;
+            padding: 15px 25px 15px 25px;
+            transform: rotate(-180deg);
+            transition: opacity 0.3s ease;
+        }
+
+        .back-btn:hover {
+            opacity: 0.7;
+        }
+        /* =====================
+           프로젝트 설명 섹션
+           ===================== */
+        .project-detail {
+            width: 100%;
+            max-width: 1440px;
+            display: flex;
+            /* background-color: var(--color-black); */
+            /* width: 100vw;
+            margin-left: calc(-1 * clamp(16px, 5vw, 60px));  컨테이너 padding 상쇄 */
+            /* padding-left: clamp(16px, 5vw, 60px);
+            padding-right: clamp(16px, 5vw, 60px);
+            box-sizing: border-box; */
+        }
+
+        .project-goal {
+            width: min(1000px, 100%);
+            padding: clamp(15px, 2vh, 40px) 0 clamp(40px, 15vh, 200px) 0;
+            margin: 0 auto;
+            box-sizing: border-box;
+            display: flex;
+            gap: 40px;
+        }
+
+        .project-goal h2 {
+            color: var(--color-black);
+            /* padding: 0 clamp(16px, 5vw, 40px); */
+            font-size: clamp(1.4rem, 4vw, 2rem);
+            width: 20%;
+        }
+
+        .project-goal .goal-detail{
+            color: var(--color-black);
+            font-size: clamp(0.9rem, 1.5vw, 1.1rem);
+            font-weight: 300;
+            line-height: 1.8;
+            vertical-align: top;
+        }
+
+        .project-goal span {
+            display: block;
+        }
+
+        /* =====================
+           포트폴리오 이미지 영역
+           ===================== */
+        .img-box {
+            padding: clamp(40px, 8vw, 200px) clamp(16px, 8vw, 200px);
+            display: flex;
+            flex-direction: column;        /* 모바일: 세로 스택 */
+            justify-content: center;
+            gap: 20px;
+            background-color: var(--color-bgc);
+            border-radius: 5%;
+        }
+
+        .banner-box {
+            width: 100%;                   /* 모바일: 전체 너비 */
+        }
+
+        .banner-box img {
+            width: 100%;
+            height: auto;
+            display: block;
+            box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        /* 이미지 캡션 */
+        .banner-box p {
+            font-size: clamp(0.85rem, 2vw, 1.125rem);
+            color: var(--color-white);
+            text-align: center;
+            background-color: var(--color-card);
+            margin: 0 0 clamp(8px, 1vw, 12px) 0;
+            padding: 6px 0;
+            border-radius: 4px;
+        }
+
+        .swiper {
+            width: 100vw;
+            margin: clamp(20px, 20vw, 300px) 0;
+            /* box-sizing: border-box; */
+            overflow: hidden;
+        }
+        .swiper-slide {
+            width: clamp(100px, 35vw, 363px);   /* 모바일~PC 자동 보간 */
+            height: clamp(216px, 80vw, 792px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: transparent;
+        }
+
+        .swiper-slide img{
+            width: 100%;        /* 슬라이드 기준으로 채움 */ 
+            height: auto;
+            object-fit: contain;
+            display: block;
+            border-radius: clamp(5px, 4vw, 50px);
+            box-shadow: 1px 1px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        /* =====================
+           태블릿 이상 (768px~)
+           ===================== */
+        @media (min-width: 768px) {
+            .img-box {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+
+            .banner-box {
+                width: calc(50% - 10px);
+            }
+        }
+
+        /* =====================
+           PC 이상 (1024px~)
+           ===================== */
+        @media (min-width: 1024px) {
+            .banner-box {
+                width: calc(60% - 30px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <!-- 헤더 / 메뉴 -->
+        <header id="header">
+            <div class="container">
+                <div class="logo">
+                    <h1><a href="../index.html">PortPolio</a></h1>
+                </div>
+                <nav class="menu">
+                    <ul>
+                        <li><a href="../index_sub/web.html">Web Site</a></li>
+                        <li><a href="../index_sub/ban.html">Banner</a></li>
+                        <li><a href="../index_sub/det.html">Detail Page</a></li>
+                        <li><a href="../index_sub/uxui.html">UX/UI</a></li>
+                        <li><a href="../index_sub/about.html">About me</a></li>
+                    </ul>
+                    <div class="sub-menu">
+                        <div class="sub-space">
+                            <span>Menu</span>
+                            <span>Menu</span>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+
+            <!-- 모바일 오버레이 -->
+            <div class="overlay" role="dialog" aria-modal="true" aria-label="모바일 메뉴">
+                <button class="close-btn" aria-label="메뉴 닫기">&times;</button>
+                <nav class="sub-btn">
+                    <a href="../index.html">Home</a>
+                    <a href="../index_sub/web.html">Web Site</a>
+                    <a href="../index_sub/ban.html">Banner</a>
+                    <a href="../index_sub/det.html">Detail Page</a>
+                    <a href="../index_sub/uxui.html">UX/UI</a>
+                    <a href="../index_sub/about.html">About Me</a>
+                </nav>
+            </div>
+        </header>
+
+        <!-- 뒤로가기 버튼 -->
+        <a href="../index_sub/web.html" class="back-btn">
+            <i class="fa-solid fa-angle-right" aria-hidden="true"></i>
+        </a>
+        <section id="section">
+            <div class="container">
+                <!-- 메인 이미지 -->
+                <div class="object-cover">
+                    <img class="object-img" src="../index_sub/sub_image/NexaCloud_main.png" alt="메인 이미지">
+                </div>
+                <!-- 메인 텍스트 -->
+                <div class="object-detail">
+                    <h1>넥사 클라우드</h1>
+                    <div class="project-info">
+                        <p>category.<span> 호스팅 홈페이지</span></p>
+                        <p>contribution.<span> 100%</span></p>
+                    </div>
+                </div>
+                <span class="object-line"></span>
+
+                <!-- 프로젝트 설명 -->
+                <div class="project-detail">
+                    <div class="project-goal">
+                        <h2>Project Detail</h2>
+                        <div class="goal-detail">
+                        <span>관련 업체들을 참고하여 호스팅/보안 사이트를 제작했습니다.</span> 
+                        서브 메뉴를 추가하여 모바일 환경에서 편리하게 사용할 수 있도록 했습니다.
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 포트폴리오 이미지 -->
+                <div class="img-box">
+                    <div class="banner-box">
+                        <img src="../index_sub/sub_image/NexaCloud_home.png" alt="넥사 클라우드 홈페이지">
+                    </div>
+                </div>
+                <!-- Slider main container -->
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo1.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo2.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo3.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo4.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo1.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo2.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo3.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo4.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo1.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo2.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo3.png" alt=""></div>
+                        <div class="swiper-slide"><img src="../index_sub/sub_image/NexaCloud_mo4.png" alt=""></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- 하단 -->
+        <footer id="footer">
+            <hr class="line line--bottom">
+            <nav class="footer-nav">
+                <a href="../index.html">Home</a>
+                <a href="../index_sub/web.html">Web Site</a>
+                <a href="../index_sub/ban.html">Banner</a>
+                <a href="../index_sub/det.html">Detail Page</a>
+                <a href="../index_sub/uxui.html">UX/UI</a>
+                <a href="../index_sub/about.html">About me</a>
+            </nav>
+            <p class="footer-copy">Copyright &copy; onflou. All rights reserved.</p>
+        </footer>
+    </div>
+    <script src="../index.js"></script>
+    <script>
+        const swiper = new Swiper('.swiper', {
+            
+            slidesPerView: 'auto',
+            spaceBetween: 150,
+            centeredSlides: true,
+            freeMode: false,
+            loop: true,
+            // loopAdditionalSlides: 1,
+            allowTouchMove: true,
+            autoplay: {
+                delay: 0,
+                disableOnInteraction: false, // ✅ 터치 후에도 자동재생 유지
+                // pauseOnMouseEnter: true,
+            },
+            speed: 4000,
+        });
+
+        // document.querySelector('.swiper-button-next').addEventListener('click', () => {
+        //     swiper.autoplay.stop();          // autoplay 즉시 중지
+        //     swiper.slideNext(600);           // 빠르게 다음으로 이동 (600ms)
+        //     setTimeout(() => {
+        //         swiper.autoplay.start();     // 2초 후 autoplay 재개
+        //     }, 4000);
+        // });
+
+        // document.querySelector('.swiper-button-prev').addEventListener('click', () => {
+        //     swiper.autoplay.stop();
+        //     swiper.slidePrev(600);
+        //     setTimeout(() => {
+        //         swiper.autoplay.start();
+        //     }, 4000);
+        // });
+    </script>
+</body>
+</html>

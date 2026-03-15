@@ -1,0 +1,119 @@
+/* =====================================================
+   ban.css — Banner 페이지 전용 스타일
+   공통 헤더/푸터는 index.css 에서 상속
+   ===================================================== */
+
+:root {
+    --card-width:  clamp(140px, 40vw, 230px);
+    --card-height: clamp(220px, 55vw, 350px);
+    --card-radius: 35px;
+}
+
+body {
+    overflow-y: scroll;
+}
+
+/* =====================================================
+   섹션
+   ===================================================== */
+#section {
+    width: min(1440px, 100%);
+    margin-top: clamp(60px, 10vh, 100px);
+}
+
+#section h1 {
+    font-size: clamp(2rem, 6vw, 6rem);
+    line-height: 1;
+    margin-top: 0;
+}
+
+/* 구분선 */
+.line--top {
+    border-top: 2.5px solid var(--color-black);
+    margin: 60px 0 60px 0;
+}
+
+.line--bottom {
+    border-top: 2.5px solid var(--color-black);
+    margin: 60px 0 60px 0;
+}
+/* =====================================================
+   카테고리 탭
+   ===================================================== */
+.category {
+    margin-bottom: clamp(40px, 8vh, 100px);
+}
+
+.category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category ul li {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    border-radius: 50px;
+    padding: 5px 15px;
+    border: 1px solid #000;
+    cursor: pointer;
+    user-select: none;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.category ul li:hover,
+.category ul li.active {
+    background-color: #000;
+    color: #fff;
+}
+
+/* =====================================================
+   카드 목록
+   ===================================================== */
+.category-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+}
+
+/* 카드 공통 — [data-category]로 묶어 전역 선택자 버그 방지 */
+.category-list [data-category] {
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: var(--card-radius);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
+    background-size: contain;
+}
+
+.category-list [data-category]:hover {
+    transform: scale(0.95);
+}
+
+.category-list a {
+    display: block;
+    color: inherit;
+}
+
+/* 카드별 배경 */
+.list-a { background: url(../index_sub/sub_image/lenovo.png)   no-repeat center; background-color: #e01409; }
+.list-b { background: url(../index_sub/sub_image/asus.png)     no-repeat center; }
+.list-c { background: url(../index_sub/sub_image/razer_logo.png)    no-repeat center; background-color: #000; }
+.list-d { background: url(../index_sub/sub_image/jabra_logo.png) no-repeat center; background-color: #ffd000; }
+.list-e { background: url(../index_sub/sub_image/tp_logo.png)  no-repeat center; }
+.list-f { background: url(../index_sub/sub_image/md_logo.png)  no-repeat center; }
+.list-g { background: url(../index_sub/sub_image/aone_logo.jpg)  no-repeat center; background-color: #eeeeee; }
+
+/* =====================================================
+   태블릿 이상 (min-width: 768px)
+   ===================================================== */
+@media (min-width: 768px) {
+    :root {
+        --card-width:  230px;
+        --card-height: 350px;
+    }
+}

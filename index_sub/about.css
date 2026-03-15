@@ -1,0 +1,573 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@100..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap');
+
+/* =====================================================
+   CSS 변수
+   ===================================================== */
+:root {
+    --color-black:   #000;
+    --color-white:   #fff;
+    --color-gray:    #999;
+    --color-dark:    #333;
+    --color-muted:   #666;
+    --color-card:    #e5e7eb;
+
+    --header-height: 60px;
+
+    /* 컨테이너 & 여백 */
+    --container-width: min(1440px, 100%);
+    --side-padding:    clamp(16px, 5vw, 80px);
+
+    /* 타이포 */
+    --font-hero:    clamp(2.2rem, 6vw, 6rem);
+    --font-section: clamp(1rem, 3vw, 4rem);
+    --font-h2:      clamp(1.4rem, 3vw, 3rem);
+    --font-card-h:  clamp(1.2rem, 2.5vw, 2.25rem);  /* 36px */
+    --font-card-b:  clamp(0.9rem, 1.8vw, 1.5rem);   /* 24px */
+
+    --radius-pill: 999px;
+    --radius-card: 40px;
+
+    --transition-base:  0.3s ease;
+    --transition-slide: 0.5s ease;
+}
+
+/* =====================================================
+   기본 스타일
+   ===================================================== */
+body {
+    font-family: "Gowun Dodum", sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+p { margin: 0; }
+
+/* =====================================================
+   레이아웃 래퍼
+   ===================================================== */
+#container {
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+    min-height: 100vh;
+}
+
+/* =====================================================
+   헤더
+   ===================================================== */
+#header {
+    width: 100%;
+    background-color: var(--color-white);
+    transition: transform var(--transition-base);
+}
+
+#header .container {
+    width: var(--container-width);
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#header.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+#header.hide {
+    transform: translateY(-100%);
+}
+
+.logo h1 {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 600;
+}
+
+/* =====================================================
+   데스크톱 메뉴 — 모바일: 숨김
+   ===================================================== */
+.menu ul {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    margin-left: 40px;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    position: relative;
+}
+
+/* li::before 단일 규칙으로 통합 */
+.menu ul li::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-black);
+    border-radius: var(--radius-pill);
+    transform: translateX(-101%);
+    transition: transform var(--transition-slide);
+}
+
+.menu ul li:hover::before {
+    transform: translateX(0);
+}
+
+.menu ul li a {
+    position: relative;
+    z-index: 1;
+    padding: 4px 8px;
+    color: var(--color-white);
+    mix-blend-mode: difference;
+}
+
+/* =====================================================
+   서브 메뉴 버튼 — 모바일: 표시
+   ===================================================== */
+.sub-menu {
+    cursor: pointer;
+    border: 2px solid var(--color-black);
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.sub-menu .sub-space {
+    text-align: center;
+    transition: transform var(--transition-slide);
+    padding: 2px 0 0 0;
+}
+
+.sub-menu:hover .sub-space {
+    transform: translateY(-23px);
+}
+
+/* =====================================================
+   모바일 오버레이
+   ===================================================== */
+.overlay {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-black);
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    color: var(--color-white);
+}
+
+.overlay.active {
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 24px;
+    right: clamp(24px, 5vw, 50px);
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: clamp(36px, 6vw, 50px);
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 1;
+    padding: 0;
+    transition: color var(--transition-base), transform var(--transition-base);
+}
+
+.close-btn:hover {
+    color: var(--color-gray);
+    transform: rotate(90deg);
+}
+
+.sub-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-btn a {
+    font-size: clamp(28px, 7vw, 60px);
+    font-weight: 700;
+    padding: 12px clamp(30px, 8vw, 100px);
+    transition: color var(--transition-slide), transform var(--transition-slide);
+}
+
+.sub-btn a:first-child {
+    margin-top: clamp(60px, 12vh, 120px);
+}
+
+.sub-btn a:hover {
+    color: #666;
+    transform: translateX(30px);
+}
+
+/* =====================================================
+   히어로 섹션
+   ===================================================== */
+#section {
+    width: 100%;
+    min-height: 60vh;       /* 모바일: 60vh */
+    background-color: var(--color-black);
+    display: flex;
+    align-items: center;
+}
+
+#section .container {
+    width: var(--container-width);
+    padding: clamp(60px, 10vh, 120px) var(--side-padding);
+    margin: 0 auto;
+}
+
+#section h1 {
+    font-size: var(--font-hero);
+    line-height: 1;
+    color: var(--color-white);
+}
+
+#section p {
+    font-size: var(--font-section);
+    color: var(--color-muted);
+    margin-top: clamp(40px, 8vh, 100px);
+    text-align: center;
+}
+
+#section strong {
+    font-weight: 700;
+    color: var(--color-gray);
+}
+
+/* 구분선 */
+
+.line--top {
+    border-top: 2.5px solid var(--color-white);
+    margin: 60px 0 60px 0;
+}
+/* =====================================================
+   플립 애니메이션
+   ===================================================== */
+#flip-box {
+    text-align: center;
+    font-family: 'Roboto', sans-serif;
+}
+
+#flip-space {
+    color: var(--color-gray);
+    text-transform: uppercase;
+    font-size: clamp(20px, 4vw, 36px);
+    font-weight: bold;
+    padding-top: clamp(40px, 8vh, 100px);
+    display: inline-block;
+}
+
+#flip {
+    height: 50px;
+    overflow: hidden;
+}
+
+#flip > div > div {
+    color: var(--color-white);
+    padding: 4px 12px;
+    height: 45px;
+    margin-bottom: 45px;
+    display: inline-block;
+}
+
+#flip div:first-child {
+    animation: show 5s linear infinite;
+}
+
+#flip div div         { background: #42c58a; }
+#flip div:first-child div { background: #4ec7f3; }
+#flip div:last-child div  { background: #DC143C; }
+
+@keyframes show {
+    0%      { margin-top: -270px; }
+    5%      { margin-top: -180px; }
+    33%     { margin-top: -180px; }
+    38%     { margin-top: -90px;  }
+    66%     { margin-top: -90px;  }
+    71%     { margin-top: 0px;    }
+    99.99%  { margin-top: 0px;    }
+    100%    { margin-top: -270px; }
+}
+
+/* =====================================================
+   스킬 애니메이션 섹션
+   ===================================================== */
+@property --translate-z {
+    syntax: '<length>';
+    inherits: false;
+    initial-value: -2000px;
+}
+
+.part {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.part > div {
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-black);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    perspective: 1000px;
+    transform-style: preserve-3d;
+    overflow: hidden;
+}
+
+.title {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    font-family: 'Courier New', monospace;
+    font-size: clamp(2rem, 8vw, 4rem);
+    font-weight: 700;
+    color: var(--color-white);
+    text-align: center;
+    letter-spacing: 0.1em;
+    pointer-events: none;
+    white-space: nowrap;
+}
+
+.part img {
+    position: absolute;
+    inset-inline: 0;
+    margin: auto;
+    width: clamp(8rem, 15vw, 20rem);
+    object-fit: cover;
+    will-change: transform;
+    cursor: pointer;
+}
+
+.part img:nth-of-type(odd) {
+    opacity: 0;
+    left: var(--left);
+    transform: translateZ(var(--translate-z))
+               translate(calc(-25rem), calc((var(--i) - (var(--count) + 1) / 2) * 8rem));
+    animation: move var(--duration) linear infinite,
+               show-img var(--duration) linear infinite;
+    animation-delay:
+        calc(var(--duration) / var(--count) * (var(--i) - 1) - var(--duration)),
+        calc(var(--duration) / var(--count) * (var(--i) - 1) - var(--duration));
+}
+
+.part img:nth-of-type(even) {
+    opacity: 0;
+    right: var(--right);
+    transform: translateZ(var(--translate-z))
+               translate(calc(25rem), calc((var(--i) - (var(--count) + 1) / 2) * -8rem));
+    animation: move var(--duration) linear infinite,
+               show-img var(--duration) linear infinite;
+    animation-delay:
+        calc(var(--duration) / var(--count) * (var(--i) - 1) - var(--duration)),
+        calc(var(--duration) / var(--count) * (var(--i) - 1) - var(--duration));
+}
+
+.part img:hover {
+    animation-play-state: paused;
+}
+
+@keyframes show-img {
+    0%      { opacity: 0; }
+    20%, 80%{ opacity: 1; }
+    90%, 100%{ opacity: 0; }
+}
+
+@keyframes move {
+    0%   { --translate-z: -5000px; }
+    100% { --translate-z: 100px;   }
+}
+
+/* =====================================================
+   스킬 소개 카드
+   ===================================================== */
+#skill-content {
+    width: 100%;
+    box-sizing: border-box;
+    margin: clamp(60px, 10vh, 150px) 0;
+}
+
+#skill-content .container {
+    width: var(--container-width);
+    margin: 0 auto;
+}
+
+/* 카드 래퍼 — 모바일: 세로 스택 */
+.skill-data-wrap {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.skill-data-left {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+/* 소개 타이틀 카드 */
+.skill-data-list-title {
+    font-size: var(--font-card-b);
+    padding: clamp(24px, 4vw, 60px);
+    border-radius: var(--radius-card);
+    background-color: var(--color-card);
+}
+
+.skill-data-list-title h2 {
+    font-size: var(--font-card-h);
+    margin: 0 0 8px 0;
+}
+
+.skill-data-list-title span {
+    display: block;
+    margin-bottom: 8px;
+}
+
+/* 이미지 카드 */
+.skill-data-list-item {
+    min-height: 756px;
+    border-radius: var(--radius-card);
+    background: url(../index_sub/sub_image/minimal-surrealistic-abstract-background.png) no-repeat center / cover;
+    filter: grayscale(1);
+}
+
+/* 오른쪽 카드 리스트 */
+.skill-data-list {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+}
+
+.skill-data {
+    font-size: var(--font-card-b);
+    padding: clamp(24px, 4vw, 60px);
+    border-radius: var(--radius-card);
+    background-color: var(--color-card);
+}
+
+.skill-data h3 {
+    font-size: var(--font-card-h);
+    margin: 0 0 8px 0;
+}
+
+.skill-data span {
+    display: block;
+    margin-bottom: 4px;
+}
+
+/* =====================================================
+   구분선 및 푸터
+   ===================================================== */
+.line--bottom {
+    border-top: 2.5px solid var(--color-black);
+    margin: 60px 0 60px 0;
+    
+}
+#footer {
+    width: var(--container-width);
+    margin: 0 auto; 
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-nav a {
+    font-size: clamp(0.85rem, 2.5vw, 2rem);
+    border-radius: 50px;
+    padding: 8px clamp(14px, 3vw, 40px);
+    border: 1px solid var(--color-black);
+    transition: background-color var(--transition-slide),
+                color var(--transition-slide),
+                font-weight var(--transition-slide);
+}
+
+.footer-nav a:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 50px;
+    color: var(--color-gray);
+    font-weight: 300;
+    margin-bottom: 50px;
+}
+
+/* =====================================================
+   태블릿 이상 (min-width: 768px)
+   ===================================================== */
+@media (min-width: 768px) {
+    :root {
+        --header-height: 69px;
+    }
+
+    #section {
+        min-height: 100vh;
+    }
+
+    .skill-data-list-item {
+        min-height: 500px;
+    }
+}
+
+/* =====================================================
+   PC 이상 (min-width: 1024px)
+   ===================================================== */
+@media (min-width: 1024px) {
+
+    /* 데스크톱 메뉴 표시, 햄버거 버튼 숨김 */
+    .menu ul   { display: flex; }
+    .sub-menu  { display: none; }
+
+    /* 카드 영역: 가로 배치 */
+    .skill-data-wrap {
+        flex-direction: row;
+        gap: 40px;
+    }
+
+    .skill-data-left {
+        flex: 1;
+    }
+
+    .skill-data-list-title {
+        flex: 0 0 252px;
+    }
+
+    .skill-data-list-item {
+        flex: 1;
+        min-height: 0;
+    }
+
+    .skill-data-list {
+        flex: 1;
+    }
+
+    .skill-data {
+        flex: 0 0 252px;
+    }
+}

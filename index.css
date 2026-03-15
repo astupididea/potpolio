@@ -1,0 +1,464 @@
+@import url('https://fonts.googleapis.com/css2?family=Gowun+Dodum&family=Noto+Sans+KR:wght@100..900&display=swap');
+
+/* =====================================================
+   CSS 변수
+   ===================================================== */
+:root {
+    --color-black:   #000;
+    --color-white:   #fff;
+    --color-gray:    #999;
+    --color-dark:    #333;
+
+    --header-height: 60px;
+
+    /* 컨테이너 — 화면보다 절대 커지지 않음 */
+    --container-width: min(1440px, 100%);
+
+    /* 좌우 여백 — 화면 크기에 따라 자동 보간 */
+    --side-padding: clamp(16px, 5vw, 80px);
+
+    /* 타이포 — 브레이크포인트 없이 유동적으로 */
+    --font-hero:    clamp(2.5rem, 6vw, 6rem);
+    --font-contact: clamp(2.5rem, 6vw, 6rem);
+    --font-h2:      clamp(1.2rem, 2.5vw, 1.8rem);
+
+    --radius-pill:  999px;
+    --radius-card:  25px;
+
+    --transition-base:  0.3s ease;
+    --transition-slide: 0.5s ease;
+}
+
+/* =====================================================
+   기본 스타일
+   ===================================================== */
+body {
+    font-family: "Gowun Dodum", sans-serif;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+p {
+    margin: 0;
+}
+
+address {
+    font-style: normal;
+}
+
+hr {
+    border: none;
+    border-top: 1px solid #ddd;
+    margin: 40px 0;
+}
+
+/* =====================================================
+   레이아웃 래퍼
+   ===================================================== */
+#container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: 100vh;
+}
+
+/* =====================================================
+   헤더
+   ===================================================== */
+#header {
+    width: 100%;
+    background-color: var(--color-white);
+    transition: transform var(--transition-base);
+}
+
+#header .container {
+    width: var(--container-width);
+    height: var(--header-height);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 auto;
+}
+
+#header.fixed {
+    position: fixed;
+    top: 0;
+    z-index: 100;
+}
+
+#header.hide {
+    transform: translateY(-100%);
+}
+
+/* 로고 */
+.logo h1 {
+    font-size: clamp(1.2rem, 2vw, 1.5rem);
+    font-weight: 600;
+}
+
+/* =====================================================
+   데스크톱 메뉴 — 모바일 기본: 숨김
+   ===================================================== */
+.menu ul {
+    display: none;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu ul li {
+    margin-left: 40px;
+    font-weight: 700;
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+    overflow: hidden;
+    position: relative;
+}
+
+.menu ul li::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-color: var(--color-black);
+    border-radius: var(--radius-pill);
+    transform: translateX(-101%);
+    transition: transform var(--transition-slide);
+}
+
+.menu ul li:hover::before {
+    transform: translateX(0);
+}
+
+.menu ul li a {
+    position: relative;
+    z-index: 1;
+    padding: 4px 8px;
+    color: var(--color-white);
+    mix-blend-mode: difference;
+}
+
+/* =====================================================
+   서브 메뉴 버튼 — 모바일 기본: 표시
+   ===================================================== */
+.sub-menu {
+    cursor: pointer;
+    border: 2px solid var(--color-black);
+    display: inline-block;
+    width: 80px;
+    height: 30px;
+    border-radius: var(--radius-pill);
+    overflow: hidden;
+    font-size: 16px;
+    font-weight: 700;
+}
+
+.sub-menu .sub-space {
+    text-align: center;
+    transition: transform var(--transition-slide);
+    padding: 2px 0 0 0;
+}
+
+.sub-menu:hover .sub-space {
+    transform: translateY(-23px);
+}
+
+/* =====================================================
+   모바일 오버레이
+   ===================================================== */
+.overlay {
+    display: none;
+    width: 100%;
+    height: 100vh;
+    background-color: var(--color-black);
+    position: fixed;
+    inset: 0;
+    z-index: 999;
+    color: var(--color-white);
+}
+
+.overlay.active {
+    display: block;
+}
+
+.close-btn {
+    position: absolute;
+    top: 24px;
+    right: clamp(24px, 5vw, 50px);
+    background: none;
+    border: none;
+    color: var(--color-white);
+    font-size: clamp(36px, 6vw, 50px);
+    cursor: pointer;
+    font-weight: 300;
+    line-height: 1;
+    padding: 0;
+    transition: color var(--transition-base), transform var(--transition-base);
+}
+
+.close-btn:hover {
+    color: var(--color-gray);
+    transform: rotate(90deg);
+}
+
+.sub-btn {
+    display: flex;
+    flex-direction: column;
+}
+
+.sub-btn a {
+    font-size: clamp(28px, 7vw, 60px);
+    font-weight: 700;
+    padding: 12px clamp(30px, 8vw, 100px);
+    transition: color var(--transition-slide), transform var(--transition-slide);
+}
+
+.sub-btn a:first-child {
+    margin-top: clamp(60px, 12vh, 120px);
+}
+
+.sub-btn a:hover {
+    color: #666;
+    transform: translateX(30px);
+}
+
+/* =====================================================
+   메인 컨텐츠
+   ===================================================== */
+#section {
+    width: var(--container-width);
+    margin-top: clamp(60px, 10vh, 100px);
+}
+
+#section > h1 {
+    font-size: var(--font-hero);
+    line-height: 1;
+    margin-top: 0;
+}
+
+/* 구분선 */
+.line {
+    border: none;
+    margin: 0;
+}
+
+.line--top {
+    border-top: 2.5px solid var(--color-black);
+    margin: 60px 0 40px 0;
+}
+
+.line--bottom {
+    border-top: 2.5px solid var(--color-black);
+    margin: 40px 0 60px 0;
+}
+
+.line--last {
+    border-top: 2.5px solid var(--color-black);
+    margin: 40px 0 60px 0;
+}
+
+/* =====================================================
+   작업 행 — 모바일: 세로 스택
+   ===================================================== */
+.work-row {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    margin-bottom: 10px;
+}
+
+/* 썸네일 */
+.work-item {
+    width: 100%;
+    height: clamp(200px, 50vw, 300px);
+    background-color: var(--color-dark);
+    border-radius: var(--radius-card);
+    flex-shrink: 0;
+}
+
+/* GIF 배경 */
+.work1 {
+    background: url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2Y0OGUxZ3hhNG4xbGN4YXl0OGRqNXZkMmFhcHBjdW11M2VnMDAxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs7TtDMAq0Sjv7CU/giphy.gif) no-repeat center / cover;
+}
+
+.work2 {
+    background: url(https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXd6azNmeDgwMzR0YjNvNXNoaTE2d3FiZHk5Mjd6bXIyZWdma2w4aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U5OgQSxhzjR1t4McGc/giphy.gif) no-repeat center / cover;
+}
+
+.work3 {
+    background: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajR4dGoxMjNxMXE3N3JmeTByNTFjMzRrd2wxb2F6Y2x2bXIxMjJnNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26u3YOuW2MWOj6tKE/giphy.gif) no-repeat center / cover;
+}
+
+/* 작업 정보 영역 */
+.work-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+}
+
+.work-text h2 {
+    font-size: var(--font-h2);
+    margin: 0 0 6px 0;
+}
+
+.work-text span {
+    font-size: clamp(0.85rem, 2vw, 1rem);
+    color: var(--color-dark);
+}
+
+/* Go List 버튼 — 모바일: 아이콘만 */
+.go-list {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    flex-shrink: 0;
+    border-radius: var(--radius-pill);
+    width: 40px;
+    height: 40px;
+    background-color: var(--color-black);
+    color: var(--color-white);
+    transition: opacity var(--transition-base);
+}
+
+.go-list p {
+    display: none;
+
+}
+
+.go-list:hover {
+    opacity: 0.7;
+}
+
+/* =====================================================
+   연락처
+   ===================================================== */
+.contact {
+    font-weight: 300;
+}
+
+.contact h2 {
+    font-size: var(--font-contact);
+    line-height: 1;
+    margin: 0 0 20px 0;
+}
+
+.contact p {
+    font-size: clamp(1rem, 2vw, 1.2rem);
+    margin-bottom: 3px;
+}
+
+.contact__phone {
+    font-weight: 500;
+    padding-top: 20px;
+    font-size: clamp(1.2rem, 3vw, 1.6rem) !important;
+}
+
+/* =====================================================
+   푸터
+   ===================================================== */
+#footer {
+    width: var(--container-width);
+    margin-bottom: 50px;
+}
+
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.footer-nav a {
+    font-size: clamp(0.85rem, 2.5vw, 2rem);
+    border-radius: 50px;
+    padding: 8px clamp(14px, 3vw, 40px);
+    border: 1px solid var(--color-black);
+    transition: background-color var(--transition-slide),
+                color var(--transition-slide),
+                font-weight var(--transition-slide);
+}
+
+.footer-nav a:hover {
+    background-color: var(--color-black);
+    color: var(--color-white);
+    font-weight: 700;
+}
+
+.footer-copy {
+    text-align: center;
+    margin-top: 50px;
+    color: var(--color-gray);
+    font-weight: 300;
+}
+
+/* =====================================================
+   태블릿 이상 (min-width: 768px)
+   ===================================================== */
+@media (min-width: 768px) {
+
+    :root {
+        --header-height: 69px;
+    }
+
+    /* 작업 행: 가로 배치 */
+    .work-row {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+
+    .work-item {
+        width: 60%;
+        height: clamp(260px, 35vw, 450px);
+    }
+
+    .work-info {
+        flex: 1;
+        flex-direction: column;
+        justify-content: space-between;
+        align-items: flex-start;
+        height: clamp(260px, 35vw, 450px);
+    }
+
+    /* Go List 버튼: 텍스트 표시 */
+    .go-list {
+        width: 105px;
+        align-self: flex-end;
+    }
+
+    .go-list p {
+        display: block;
+        font-size: 1.1em;
+    }
+}
+
+/* =====================================================
+   PC 이상 (min-width: 1024px)
+   ===================================================== */
+@media (min-width: 1024px) {
+
+    /* 데스크톱 메뉴 표시, 햄버거 버튼 숨김 */
+    .menu ul {
+        display: flex;
+    }
+
+    .sub-menu {
+        display: none;
+    }
+
+    .work-item {
+        width: 900px;
+        height: 450px;
+    }
+
+    .work-info {
+        height: 450px;
+    }
+        .go-list p {
+        font-size: 1.4em;
+        font-weight: 700;
+    }
+}

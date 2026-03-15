@@ -1,0 +1,143 @@
+/* =====================================================
+   web.css — Web Site 서브 페이지 전용 스타일
+   (공통 헤더/푸터 스타일은 index.css 에서 상속)
+   ===================================================== */
+
+:root {
+    /* 카드 크기 — clamp 로 해상도별 자동 보간 */
+    --card-width:  clamp(140px, 40vw, 230px);
+    --card-height: clamp(220px, 55vw, 350px);
+    --card-radius: 35px;
+}
+
+/* 스크롤바 항상 표시 — 레이아웃 흔들림 방지 */
+body {
+    overflow-y: scroll;
+}
+
+/* =====================================================
+   섹션
+   ===================================================== */
+#section {
+    width: min(1440px, 100%);
+    margin-top: clamp(60px, 10vh, 100px);
+}
+
+#section h1 {
+    font-size: clamp(2rem, 6vw, 6rem);
+    line-height: 1;
+    margin-top: 0;
+}
+
+/* 구분선 */
+.line--top {
+    border-top: 2.5px solid var(--color-black);
+    margin: 60px 0 60px 0;
+}
+
+.line--bottom {
+    border-top: 2.5px solid var(--color-black);
+    margin: 60px 0 60px 0;
+}
+
+/* =====================================================
+   카테고리 탭
+   ===================================================== */
+.category {
+    margin-bottom: clamp(40px, 8vh, 100px);
+}
+
+.category ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.category ul li {
+    font-size: clamp(1rem, 2.5vw, 1.5rem);
+    border-radius: 50px;
+    padding: 5px 15px;
+    border: 1px solid #000;
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    user-select: none;
+}
+
+.category ul li:hover,
+.category ul li.active {
+    background-color: #000;
+    color: #fff;
+}
+
+/* =====================================================
+   카드 목록
+   ===================================================== */
+.category-list {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 40px;
+    transition: opacity 0.3s ease;
+}
+
+/* 카드 공통 — 전역 선택자 버그 수정: .list-a, .list-b, .list-c → 공통 클래스로 통합 */
+.category-list [data-category] {
+    width: var(--card-width);
+    height: var(--card-height);
+    border-radius: var(--card-radius);
+    box-shadow: 5px 5px 5px rgba(0, 0, 0, 0.3);
+    transition: transform 0.5s ease;
+}
+
+.category-list [data-category]:hover {
+    transform: scale(0.95);
+}
+
+/* list-a: NexaCloud 카드 */
+.category-list .list-a {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #eeeeee;
+    color: #fff;
+    font-weight: 700;
+    font-size: clamp(1rem, 3vw, 2.25rem);
+}
+
+/* list-b: 빈 카드 (추후 사용) */
+.category-list .list-a {
+    /* background: linear-gradient(#e66465, #9198e5); */
+}
+
+/* 카드 링크 래퍼 */
+.category-list a {
+    display: block;
+    color: inherit;
+}
+/* 카드별 배경 */
+.list-a { background: url(../index_sub/sub_image/card-logo.png) no-repeat center ;}
+
+/* =====================================================
+   태블릿 이상 (min-width: 768px)
+   ===================================================== */
+@media (min-width: 768px) {
+    :root {
+        --card-width:  230px;
+        --card-height: 350px;
+    }
+}
+
+/* =====================================================
+   PC 이상 (min-width: 1024px)
+   ===================================================== */
+@media (min-width: 1024px) {
+    /* 카드가 충분히 넓으면 고정 크기 유지 */
+    :root {
+        --card-width:  230px;
+        --card-height: 350px;
+    }
+}
