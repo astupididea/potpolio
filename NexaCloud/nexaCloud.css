@@ -358,41 +358,6 @@ address { font-style: normal; }
     color: var(--color-white);
 }
 
-/* .service-number {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-    padding: 20px 60px 0 60px;
-}
-
-.number-left, .number-right {
-    flex: 1;
-}
-
-.number-left h4, .number-right h4 {
-    font-size: clamp(13px, 2vw, 16px);
-    color: #444;
-    font-weight: 500;
-    margin-bottom: 8px;
-}
-
-.number-left i { color: var(--color-primary); }
-
-.number-left ul li,
-.number-right ul li {
-    font-size: clamp(14px, 3vw, 20px);
-}
-
-.number-left ul em,
-.number-right ul em {
-    font-size: clamp(14px, 3vw, 20px);
-    margin-left: 5px;
-    color: var(--color-primary);
-    font-weight: 500;
-} */
-
-/* .number-right ul li { font-size: clamp(12px, 2vw, 14px); color: var(--color-gray); } */
-
 /* =====================================================
    광고 배너
    ===================================================== */
@@ -646,7 +611,7 @@ address { font-style: normal; }
 }
 
 /* 패밀리 사이트 */
-.family { width: 100%; }
+.family { width: 100%; display: none; }
 
 .family-box {
     display: flex;
@@ -656,7 +621,7 @@ address { font-style: normal; }
 
 #family-site {
     height: 40px;
-    padding-left: 8px;
+    padding: 0 8px;
     font-size: clamp(12px, 2vw, 14px);
     border: 1px solid #cfd5da;
 }
@@ -706,7 +671,7 @@ address { font-style: normal; }
     /* 푸터: 가로 */
     #footer .container { flex-direction: row; }
     .footer { width: 70%; }
-    .family { width: 30%; }
+    .family { width: 30%; display: block; }
     .family-box { justify-content: flex-end; }
 }
 
@@ -769,4 +734,5 @@ address { font-style: normal; }
 
     /* 푸터 */
     #footer .container { flex-direction: row; }
+    .family { display: block;}
 }

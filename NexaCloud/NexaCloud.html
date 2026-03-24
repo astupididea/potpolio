@@ -26,7 +26,6 @@
                                 <span></span>
                             </label>
                         </div>
-                        <!-- ✅ h1을 a 밖으로 — 블록 요소는 인라인 안에 못 들어감 -->
                         <h1><a href="">NexaCloud</a></h1>
                     </div>
 
@@ -332,14 +331,14 @@
                     <address>
                         <ul>
                             <li><span>(주) 넥사 클라우드</span><span>경기도 성남시 분당구 판교로 000, 0동 1층</span><span>고객센터 : 1234-5678</span></li>
-                            <li><span>대표이사 : 홍길동</span><span>사업자등록번호: 123-45-6789</span><span>통신판매업 신고번호: 제2012-경기성남-1188호</span></li>
+                            <li><span>대표이사 : 홍길동</span><span>사업자등록번호: 123-45-6789</span><span>통신판매업 신고번호: 제0000-경기성남-0000호</span></li>
                         </ul>
                         <p>&copy; nexaCloud Inc. All Rights Reserved.</p>
                     </address>
                     <div class="patner">
                         <ul>
                             <li><a href="#"><img src="../nexaCloud/iamge/img_csap.png" alt="CSAP 인증"></a></li>
-                            <li><a href="#"><img src="../nexaCloud/iamge/img_icann.png" alt="ICANN 인증"></a></li><!-- ✅ 경로 오타 수정 -->
+                            <li><a href="#"><img src="../nexaCloud/iamge/img_icann.png" alt="ICANN 인증"></a></li>
                             <li><a href="#"><img src="../nexaCloud/iamge/img_innovative_product.png" alt="혁신제품 인증"></a></li>
                             <li><a href="#"><img src="../nexaCloud/iamge/img_isms.png" alt="ISMS 인증"></a></li>
                             <li><a href="#"><img src="../nexaCloud/iamge/img_kosdaq.png" alt="코스닥 인증"></a></li>
@@ -356,8 +355,7 @@
                         <select id="family-site" title="패밀리 사이트 목록 바로가기">
                             <option value="">패밀리 사이트</option>
                             <option value="https://naver.com">기업 도메인</option>
-                            <option value="https://naver.com">하이웍스</option>
-                            <option value="https://naver.com">IX서비스</option>
+                            <option value="https://naver.com">서비스</option>
                         </select>
                         <button type="button" class="family-btn">바로가기</button>
                     </div>
@@ -372,8 +370,7 @@
 
     // 메뉴 클릭 → 오버레이 열기
     IconMenu.addEventListener('click', (e) => {
-        // e.preventDefault();  // ✅ <a> 태그 새로고침 방지
-        e.stopPropagation(); // ✅ 이벤트 버블링 차단
+        e.stopPropagation(); // 이벤트 버블링 차단
         if(IconMenu.checked){
             Overlay.classList.add('active');
         }else{
