@@ -184,7 +184,7 @@ address { font-style: normal; }
    ===================================================== */
 #banner {
     min-height: clamp(300px, 50vw, 550px);
-    background: url(../nexaCloud/iamge/home_main.jpg) no-repeat center top / cover;
+    background: url(./iamge/home_main.jpg) no-repeat center top / cover;
 }
 
 .banner { padding: clamp(40px, 10vw, 115px) clamp(16px, 5vw, 50px); }
@@ -312,9 +312,9 @@ address { font-style: normal; }
     background-size: cover;
 }
 
-.sla-img { background-image: url(../nexaCloud/iamge/select_prof.png); }
-.security-img { background-image: url(../nexaCloud/iamge/select_sec.png); }
-.server-img { background-image: url(../nexaCloud/iamge/select_call.png); }
+.sla-img { background-image: url(./iamge/select_prof.png); }
+.security-img { background-image: url(./iamge/select_sec.png); }
+.server-img { background-image: url(./iamge/select_call.png); }
 
 /* =====================================================
    상담 안내 — 모바일
@@ -363,7 +363,7 @@ address { font-style: normal; }
    ===================================================== */
 #adver{
     padding: clamp(40px, 8vw, 80px) 0;
-    background: url(../nexaCloud/iamge/ad.jpg) no-repeat center center / cover;
+    background: url(./iamge/ad.jpg) no-repeat center center / cover;
     position: relative;
 }
 
@@ -468,10 +468,10 @@ address { font-style: normal; }
     background-position: center;
 }
 
-.blog-list-img-1 { background-image: url(../nexaCloud/iamge/blog_safe.jpg); }
-.blog-list-img-2 { background-image: url(../nexaCloud/iamge/blog_infor.jpg); }
-.blog-list-img-3 { background-image: url(../nexaCloud/iamge/blog_cpu.jpg); }
-.blog-list-img-4 { background-image: url(../nexaCloud/iamge/blog_lunux.jpg); }
+.blog-list-img-1 { background-image: url(./iamge/blog_safe.jpg); }
+.blog-list-img-2 { background-image: url(./iamge/blog_infor.jpg); }
+.blog-list-img-3 { background-image: url(./iamge/blog_cpu.jpg); }
+.blog-list-img-4 { background-image: url(./iamge/blog_lunux.jpg); }
 
 /* 공지/네임서버 — 모바일: 세로 */
 .blog-notice {
