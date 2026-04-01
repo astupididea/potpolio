@@ -282,15 +282,19 @@ hr {
 
 /* GIF 배경 */
 .work1 {
-    background: url(https://media1.giphy.com/media/v1.Y2lkPTc5MGI3NjExY2Y0OGUxZ3hhNG4xbGN4YXl0OGRqNXZkMmFhcHBjdW11M2VnMDAxbiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/3ohs7TtDMAq0Sjv7CU/giphy.gif) no-repeat center / cover;
+    background: url(https://media.giphy.com/media/v1.Y2lkPWVjZjA1ZTQ3bmk0MTB4ZnozdjUweXJoZWJtYTFyOTNwajRrZHAwdTFkaDJ5MDcyNSZlcD12MV9naWZzX3JlbGF0ZWQmY3Q9Zw/uz9TZl09dytHKtN5qd/giphy.gif) no-repeat center / cover;
 }
 
 .work2 {
-    background: url(https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZXd6azNmeDgwMzR0YjNvNXNoaTE2d3FiZHk5Mjd6bXIyZWdma2w4aCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/U5OgQSxhzjR1t4McGc/giphy.gif) no-repeat center / cover;
+    background: url(https://media.giphy.com/media/J7ntDlEUKz13SlkwQ2/giphy.gif) no-repeat center / cover;
 }
 
 .work3 {
-    background: url(https://media3.giphy.com/media/v1.Y2lkPTc5MGI3NjExajR4dGoxMjNxMXE3N3JmeTByNTFjMzRrd2wxb2F6Y2x2bXIxMjJnNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/26u3YOuW2MWOj6tKE/giphy.gif) no-repeat center / cover;
+    background: url(https://media.giphy.com/media/yQ8KMkMrcw9JuiM051/giphy.gif) no-repeat top / cover;
+}
+
+.work4 {
+    background: url(https://media.giphy.com/media/vk2jxWFJtjgh3vPtKO/giphy.gif) no-repeat center / cover;
 }
 
 /* 작업 정보 영역 */
